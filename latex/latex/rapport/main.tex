@@ -1,0 +1,199 @@
+%===============================================================================
+% Fichier: main.tex
+%===============================================================================
+\documentclass[12pt,a4paper]{report}
+
+%------------------ Encodage et langue ------------------
+\usepackage[utf8]{inputenc}   % Encodage UTF-8
+\usepackage[T1]{fontenc}      % Encodage des caractères pour la police
+\usepackage[french]{babel}    % Langue française
+
+%------------------ Packages utiles ------------------
+\usepackage{lmodern}          % Police vectorielle
+\usepackage{geometry}         % Gestion des marges
+\usepackage{graphicx}         % Inclusion d'images
+\usepackage{booktabs}         % Pour de plus jolis tableaux
+\usepackage{array}            % Améliore les tableaux
+\usepackage{hyperref}         % Liens hypertexte
+\usepackage{fancyhdr}         % En-têtes et pieds de page personnalisés
+\usepackage{setspace}         % Gestion de l'interligne
+
+%------------------ Mise en page ------------------
+\geometry{margin=1in}         % Marges d'1 pouce
+\onehalfspacing               % Interligne 1.5
+
+%------------------ En-têtes et pieds de page ------------------
+\pagestyle{fancy}
+\fancyhf{} % Nettoie les en-têtes et pieds
+\lhead{\textit{Prédiction de défauts logiciels}} % En-tête gauche
+\rhead{\thepage}                                 % En-tête droite : numéro de page
+\renewcommand{\headrulewidth}{0.4pt}             % Ligne sous l'en-tête
+
+%------------------ Informations du PDF ------------------
+\hypersetup{
+    pdftitle={Rapport d'avancement - Prédiction de défauts logiciels},
+    pdfauthor={Votre Équipe},
+    pdfsubject={Rapport d'avancement},
+    pdfkeywords={Machine Learning, Prédiction de défauts, Feature Selection}
+}
+
+%===============================================================================
+% Début du document
+%===============================================================================
+\begin{document}
+
+%------------------ Page de garde ------------------
+\begin{titlepage}
+    \centering
+    \vspace*{2cm}
+    {\Huge \textbf{Rapport d'avancement}\\[0.5cm]
+     \Large \textit{Prédiction de défauts logiciels}}
+    
+    \vfill
+    \textbf{Réalisé par :}\\[0.2cm]
+    - Khadidja\\
+    - Khawla\\
+    - Moh\\
+    - Yacine\\[1cm]
+    
+    \textbf{Encadrant :}\\[0.2cm]
+    Nom de l'encadrant
+    
+    \vfill
+    {\large \today}
+\end{titlepage}
+
+%------------------ Table des matières ------------------
+\tableofcontents
+\newpage
+
+%===============================================================================
+% Introduction
+%===============================================================================
+\chapter{Introduction}
+Dans ce rapport, nous présentons l'avancement de notre projet de \textbf{prédiction de défauts logiciels}. 
+Nous allons d'abord revenir sur les bases du \textit{Machine Learning} (apprentissage supervisé et non supervisé), 
+puis détailler la répartition des algorithmes étudiés par chaque membre de l'équipe. 
+Ensuite, nous présenterons nos premiers résultats de performance et nos recherches sur la \textit{Feature Selection}.
+Enfin, nous discuterons des prochaines étapes à réaliser et conclurons sur nos objectifs finaux.
+
+%===============================================================================
+% Étude préalable : Machine Learning
+%===============================================================================
+\chapter{Étude préalable : Machine Learning}
+\section{Apprentissage supervisé}
+Nous avons étudié les principes de la classification (ex. : SVM, KNN, Arbre de décision, Forêt aléatoire) 
+et de la régression (ex. : Régression linéaire, Régression logistique).
+
+\section{Apprentissage non supervisé}
+Nous avons également exploré le \textit{clustering} (ex. : K-Means, Clustering hiérarchique) pour 
+mieux comprendre la structure des données sans étiquettes.
+
+\section{Régression linéaire}
+Nous avons brièvement revu les concepts de la régression linéaire afin de comprendre comment modéliser 
+la relation entre des variables explicatives et une variable à prédire.
+
+%===============================================================================
+% Répartition des algorithmes
+%===============================================================================
+\chapter{Répartition des algorithmes étudiés}
+\begin{itemize}
+    \item \textbf{Khadidja} : Régression, ACP (Analyse en Composantes Principales)
+    \item \textbf{Khawla} : Arbre de décision, Clustering hiérarchique
+    \item \textbf{Moh} : KNN (k-Nearest Neighbors), K-Means
+    \item \textbf{Yacine} : SVM (Support Vector Machine), Forêt aléatoire (Random Forest)
+\end{itemize}
+
+%===============================================================================
+% Tests de performance préliminaires
+%===============================================================================
+\chapter{Tests de performance préliminaires}
+Nous avons testé plusieurs algorithmes sur un échantillon de données afin de mesurer leur 
+\textbf{précision (accuracy)}. Les résultats observés (non définitifs) sont les suivants :
+
+\begin{table}[h!]
+\centering
+\begin{tabular}{l c}
+\toprule
+\textbf{Algorithme} & \textbf{Précision (\%)} \\
+\midrule
+Régression Logistique & 97.66 \\
+KNN                  & 97.37 \\
+SVM                  & 97.66 \\
+Random Forest        & 97.08 \\
+\bottomrule
+\end{tabular}
+\caption{Premiers résultats de précision des algorithmes}
+\label{tab:results}
+\end{table}
+
+Ces chiffres sont indicatifs et dépendront de la qualité du jeu de données, 
+du prétraitement et des techniques de sélection de variables (feature selection).
+
+%===============================================================================
+% Feature Selection
+%===============================================================================
+\chapter{Compréhension du principe de Feature Selection}
+\section{Définition}
+La \textbf{sélection de caractéristiques} (Feature Selection) consiste à identifier 
+les variables les plus pertinentes pour la prédiction. Cette étape vise à réduire 
+la complexité du modèle et améliorer sa performance.
+
+\section{Méthodes explorées}
+\begin{itemize}
+    \item \textbf{Régularisation (Lasso, Ridge)} : Pénalise les coefficients pour 
+    éliminer les variables peu pertinentes.
+    \item \textbf{Importance des features} (Random Forest, XGBoost) : Utilise la 
+    contribution de chaque variable dans la prédiction.
+    \item \textbf{Méthodes statistiques} (Chi-square, mutual\_info\_classif) : 
+    Sélectionne les variables en fonction de tests statistiques.
+    \item \textbf{RFE (Recursive Feature Elimination)} : Élimine récursivement 
+    les caractéristiques les moins pertinentes.
+\end{itemize}
+
+%===============================================================================
+% Diagrammes de processus
+%===============================================================================
+\chapter{Diagrammes de processus}
+Afin de structurer notre démarche, nous nous sommes appuyés sur des schémas illustrant 
+le workflow de la prédiction de défauts logiciels :
+
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width=0.7\textwidth]{flow_diagram_example.png}
+    \caption{Exemple de diagramme de flux pour la prédiction de défauts logiciels}
+    \label{fig:flow}
+\end{figure}
+
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width=0.7\textwidth]{model_training_validation.png}
+    \caption{Schéma général de la construction d’un modèle (prétraitement, entraînement, validation)}
+    \label{fig:model}
+\end{figure}
+
+%===============================================================================
+% Prochaines étapes
+%===============================================================================
+\chapter{Prochaines étapes}
+\begin{enumerate}
+    \item \textbf{Approfondir la sélection de caractéristiques} : valider les approches Lasso, RFE, etc.
+    \item \textbf{Comparer systématiquement les algorithmes} : mettre en place une procédure 
+    d’évaluation rigoureuse (cross-validation, métriques de précision, rappel, F1-score).
+    \item \textbf{Finaliser le prétraitement des données} : gestion des valeurs manquantes, 
+    normalisation, etc.
+    \item \textbf{Intégrer nos résultats} dans le rapport LaTeX (rédaction de sections dédiées).
+\end{enumerate}
+
+%===============================================================================
+% Conclusion
+%===============================================================================
+\chapter{Conclusion}
+Nous avons avancé sur l’étude théorique des algorithmes (supervisés et non supervisés), 
+la mise en place de premiers tests de performance et la compréhension du principe de 
+\textit{Feature Selection}. Nous allons maintenant approfondir les approches de 
+sélection de caractéristiques et formaliser nos résultats dans le mémoire. 
+
+Toute remarque ou recommandation de l’encadrant sera la bienvenue pour affiner nos méthodes.
+
+\end{document}
