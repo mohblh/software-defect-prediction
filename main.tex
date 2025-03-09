@@ -1,0 +1,46 @@
+\documentclass[a4paper, 12pt, oneside]{report}
+\usepackage[top=2.5cm,bottom=2.5cm,left=2.5cm,right=2.5cm]{geometry}
+\usepackage[utf8]{inputenc} % Encodage UTF-8
+\usepackage[T1]{fontenc}    % Gestion des polices
+\usepackage[french]{babel}  % Typographie française
+\usepackage[pdftex]{graphicx}
+\usepackage{fancyhdr}
+\usepackage{color}
+\usepackage[Lenny]{fncychap}
+\linespread{1.5}
+
+\begin{document}
+	\pagestyle{empty}
+	
+	% Page de garde
+	\input{page_garde.tex}
+	
+	% Table des matières
+	\pagestyle{fancy}
+	\pagenumbering{roman}
+	\lhead{}
+	\rhead{\textit{Table des matières}}
+	\addcontentsline{toc}{chapter}{Table des matières}
+	\tableofcontents{}
+	\newpage
+	
+	% Liste des figures (optionnel)
+	\lhead{}
+	\rhead{\textit{Table des figures}}
+	\addcontentsline{toc}{chapter}{Table des figures}
+	\listoffigures{}
+	\newpage
+	
+	% Liste des tableaux (optionnel)
+	\lhead{}
+	\rhead{\textit{Liste des tableaux}}
+	\addcontentsline{toc}{chapter}{Liste des tableaux}
+	\listoftables
+	\newpage
+	
+	% Introduction et chapitres
+	\pagenumbering{arabic}
+	\input{chapitre1.tex}    % Chapitre 1 (inclut l'introduction générale)
+	\input{chapitre2.tex}    % Chapitre 2
+	\input{chapitre3.tex}    % Chapitre 3
+\end{document}
