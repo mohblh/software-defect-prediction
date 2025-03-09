@@ -1,92 +1,48 @@
-\documentclass{article}
-\usepackage[utf8]{inputenc}
-\usepackage{graphicx}
-\usepackage{hyperref}
+\documentclass[a4paper, 12pt, oneside]{report}
+\usepackage[top=2.5cm,bottom=2.5cm,left=2.5cm,right=2.5cm]{geometry}
+\usepackage[utf8]{inputenc} % Encodage UTF-8
+\usepackage[T1]{fontenc}    % Gestion des polices
+\usepackage[french]{babel}  % Typographie française
+\usepackage[pdftex]{graphicx}
+\usepackage{fancyhdr}
+\usepackage{color}
+\usepackage[Lenny]{fncychap}
+\linespread{1.5}
+\usepackage{array}
+\usepackage{geometry}  % Pour ajuster les marges de la page
+\usepackage{booktabs}  % Pour des lignes de tableau plus élégantes
+\usepackage{tabularx}  % Pour des tableaux qui s'adaptent à la largeur
 
-\title{Rapport de Projet : Machine Learning et Sélection de Caractéristiques}
-\author{Nom de l'équipe}
-\date{\today}
+% Ajuster les marges pour avoir plus d'espace horizontal
+\geometry{a4paper, margin=2cm}
 
 \begin{document}
+	\pagestyle{empty}
+	
+	% Page de garde
+	\input{page_garde.tex}
+	
+	% Table des matières
+	\pagestyle{fancy}
+	\pagenumbering{roman}
+	\lhead{}
+	\rhead{\textit{Table des matières}}
+	\addcontentsline{toc}{chapter}{Table des matières}
+	\tableofcontents{}
+	\newpage
+	
+	% Liste des figures (optionnel)
+	\lhead{}
+	\rhead{\textit{Table des figures}}
+	\addcontentsline{toc}{chapter}{Table des figures}
+	\listoffigures{}
+	\newpage
+	
 
-\maketitle
-
-\section{Introduction au Machine Learning}
-Le machine learning (apprentissage automatique) est une branche de l'intelligence artificielle permettant aux systèmes d'apprendre à partir de données pour effectuer des prédictions ou des classifications sans programmation explicite.
-
-\subsection{Distinction entre apprentissage supervisé et non supervisé}
-- **Supervisé** : Utilise des données étiquetées pour entraîner un modèle. Exemples : classification (prédire des catégories) et régression (prédire des valeurs continues).  
-- **Non supervisé** : Travaille avec des données non étiquetées pour identifier des structures ou regroupements. Exemple : clustering.
-
-\subsection{Classification et régression linéaire}
-- **Classification** : Prédit des classes (ex. oui/non). Exemples : SVM, KNN.  
-- **Régression linéaire** : Prédit une valeur numérique en supposant une relation linéaire entre les variables.
-
-\section{Répartition des Algorithmes Étudiés}
-Nous avons étudié 8 algorithmes, répartis comme suit :
-- **Khadidja** : Régression (supervisée), ACP (non supervisée).  
-- **Khawla** : Arbre de décision (supervisé), Clustering hiérarchique (non supervisé).  
-- **Moh** : KNN (supervisé), K-Means (non supervisé).  
-- **Yacine** : SVM (supervisé), Forêt aléatoire (supervisé).
-
-\section{Compréhension du Principe de Feature Selection}
-### Pourquoi c'est important
-- Réduit la complexité en éliminant les caractéristiques inutiles.  
-- Améliore la précision en évitant le surapprentissage.  
-- Réduit les coûts computationnels.
-
-### Méthodes étudiées
-- **Lasso (L1 Regularization)** : Pénalise les caractéristiques moins importantes.  
-- **Statistiques/Score basé** : Sélectionne les meilleures caractéristiques selon des scores.  
-- **RFE (Recursive Feature Elimination)** : Élimine récursivement les caractéristiques faibles.  
-- **Feature Importance** : Utilise l'importance calculée des caractéristiques.  
-- **Chi-Square** : Évalue la dépendance entre caractéristiques et cible.
-
-\section{Tests de Performance et Résultats}
-Nous avons testé les algorithmes suivants avec la sélection de caractéristiques :
-- **Algorithmes** : KNN, SVM, Régression logistique, Forêt aléatoire.  
-- **Résultats** : La précision a augmenté après la sélection (ex. jusqu'à 97\%).
-
-\begin{table}[h]
-    \centering
-    \begin{tabular}{|l|c|c|}
-        \hline
-        \textbf{Algorithme} & \textbf{Précision sans FS} & \textbf{Précision avec FS} \\
-        \hline
-        Régression logistique & 85\% & 92\% \\
-        \hline
-        KNN & 88\% & 95\% \\
-        \hline
-        SVM & 90\% & 97\% \\
-        \hline
-        Forêt aléatoire & 91\% & 97\% \\
-        \hline
-    \end{tabular}
-    \caption{Résultats de précision}
-    \label{tab:results}
-\end{table}
-
-\section{Diagrammes de Processus}
-\subsection{Flow Diagram}
-\begin{figure}[h]
-    \centering
-    \includegraphics[width=0.8\textwidth]{flow_diagram.png}
-    \caption{Flow Diagram général du processus}
-    \label{fig:flow_diagram}
-\end{figure}
-Étapes : Entrée des données → Prétraitement → Feature Selection → Splitting → Classification → Prédiction.
-
-\subsection{Modèle de Formation/Validation}
-\begin{figure}[h]
-    \centering
-    \includegraphics[width=0.8\textwidth]{training_validation.png}
-    \caption{Modèle de formation et validation}
-    \label{fig:training_validation}
-\end{figure}
-Étapes : Préparation des données → Choix des algorithmes → Validation croisée.
-
-\section{Conclusion et Prochaines Étapes}
-**Résultats** : Précision atteignant ~97\% grâce à la sélection de caractéristiques.  
-**Prochaines pistes** : Tester d'autres méthodes (ex. Elastic Net), comparer d'autres métriques (F1-score), finaliser le rapport.
-
+	
+	% Introduction et chapitres
+	\pagenumbering{arabic}
+	\input{chapitre1.tex}    % Chapitre 1 (inclut l'introduction générale)
+	\input{chapitre2.tex}    % Chapitre 2
+	\input{chapitre3.tex}    % Chapitre 3
 \end{document}
